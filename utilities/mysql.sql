@@ -10,3 +10,5 @@ CREATE TABLE `eCommercePHP`.`user` (
     UNIQUE (`email`)
     ) 
 ENGINE = InnoDB;
+
+"ALTER TABLE `user` DROP `purchasing_history`;"
