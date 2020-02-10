@@ -6,5 +6,9 @@ switch ($endPoint) {
     $controller = new UserController($dbConnection, $requestMethod, $userId, $requestObject);
     $controller->processRequest();
     break;
+    case 'product':
+    $controller = new ProductController($dbConnection, $requestMethod, $userId, $requestObject);
+    $controller->processRequest();
+    break;
 }
 ?>
