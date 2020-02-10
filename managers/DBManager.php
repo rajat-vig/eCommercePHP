@@ -1,7 +1,6 @@
 <?php
 class DBManager {
     private $dbConnection;
-
     public function __construct($dbConnection) {
         $this->dbConnection = $dbConnection;
     }
@@ -12,11 +11,8 @@ class DBManager {
             $sql = $this->dbConnection->prepare($cmd);
             $sql->bindValue(':userId', $userId);
             $sql->execute();
-            //if we got a row
-            if ($sql->rowCount() > 0) {
-                $result = $sql->fetch(PDO::FETCH_ASSOC);
-                return $result;
-            }
+            if ($sql->rowCount() > 0)
+                return $sql->fetch(PDO::FETCH_ASSOC);
         } catch(Exception $e){
             echo $e->getMessage();
         }
@@ -27,11 +23,8 @@ class DBManager {
             $cmd = 'SELECT * FROM user';
             $sql = $this->dbConnection->prepare($cmd);
             $sql->execute();
-            //if we got a row
-            if ($sql->rowCount() > 0) {
-                $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
-            }
+            if ($sql->rowCount() > 0)
+                return $sql->fetchAll(PDO::FETCH_ASSOC);
         } catch(Exception $e){
             echo $e->getMessage();
         }
@@ -52,8 +45,7 @@ class DBManager {
                 $cmd = 'SELECT * FROM user WHERE user_id = ' . $last_id;
                 $sql = $this->dbConnection->prepare($cmd);
                 $sql->execute();
-                $result = $sql->fetch(PDO::FETCH_ASSOC);
-                return $result;
+                return $sql->fetch(PDO::FETCH_ASSOC);
             }
         } catch(Exception $e){
             echo $e->getMessage();
@@ -75,8 +67,7 @@ class DBManager {
                 $cmd = 'SELECT * FROM user WHERE user_id = ' . $userId;
                 $sql = $this->dbConnection->prepare($cmd);
                 $sql->execute();
-                $result = $sql->fetch(PDO::FETCH_ASSOC);
-                return $result;
+                return $sql->fetch(PDO::FETCH_ASSOC);
             }
         } catch(Exception $e){
             echo $e->getMessage();
@@ -89,9 +80,7 @@ class DBManager {
             $sql = $this->dbConnection->prepare($cmd);
             $sql->bindValue(':userId', $userId);
             $sql->execute();
-            if ($sql->rowCount() > 0)
-                return true;
-            return false;
+            return $sql->rowCount() > 0 ? true : false;
         } catch(Exception $e){
             echo $e->getMessage();
         }

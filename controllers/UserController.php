@@ -54,12 +54,10 @@ class UserController {
             $utilityObj = new Utility();
             $utilityObj->sendResponse($userResponse);
             break;
-
         }
     }
 
-    private function getUserModel($requestObj)
-    {
+    private function getUserModel($requestObj) {
         global $RQ_EMAIL, $RQ_PASSWORD, $RQ_USERNAME, $RQ_SHIPPING_ADDRESS;
         $userObj = new UserModel();
         $userObj->userName = $requestObj[$RQ_USERNAME]; 
@@ -69,8 +67,7 @@ class UserController {
     	return $userObj;
     }
 
-    private function updateUserModel($requestObj, $userCurrentDetails)
-    {
+    private function updateUserModel($requestObj, $userCurrentDetails) {
         global $RQ_EMAIL, $RQ_PASSWORD, $RQ_USERNAME, $RQ_SHIPPING_ADDRESS;
         $userObj = new UserModel();
         $userObj->userName = $requestObj[$RQ_USERNAME] ?? $userCurrentDetails->responseData[$RQ_USERNAME]; 
@@ -80,5 +77,4 @@ class UserController {
     	return $userObj;
     }
 }
-
 ?>
