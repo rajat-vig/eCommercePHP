@@ -29,3 +29,12 @@ ALTER TABLE product ADD COLUMN product_name VARCHAR(255) AFTER product_id;
 
 ALTER TABLE `product` CHANGE `price` `price` DECIMAL(10,2) NOT NULL;
 ALTER TABLE `product` CHANGE `shipping_cost` `shipping_cost` DECIMAL(10,2) NOT NULL;
+
+
+CREATE TABLE cart (
+    user_id int,
+    product_id int,
+    quantity int NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (product_id) REFERENCES product(product_id)
+);
