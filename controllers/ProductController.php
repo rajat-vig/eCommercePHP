@@ -13,9 +13,18 @@ class ProductController {
         $this->productId = $productId;
         $this->requestObj = $requestObj;
     }
-    
-    public function processRequest() {
 
+    public function processRequest() {
+        switch ($this->requestMethod) {
+            case 'GET':
+            if ($this->productId) {
+                $blManagerObj = new BLManager();
+                $productResponse = $blManagerObj->getProduct($this->dbConnection, $this->productId);
+                $utilityObj = new Utility();
+                $utilityObj->sendResponse($productResponse);
+                break;
+            } 
+        }
     }
 }
 ?>
