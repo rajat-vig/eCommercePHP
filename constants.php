@@ -39,5 +39,17 @@ $RQ_IMAGE_URL = 'image_url';
 $RQ_PRICE = 'price';
 $RQ_SHIPPING_COST = 'shipping_cost';
 
+#PRODUCT MODEL CONSTANTS
+$PRODUCT_RETRIEVED_SUCCESSFULLY = 'Product information retrieved successfully';
+$PRODUCT_RETRIEVING_ERROR = 'Product information doesn\'t exist';
+$PRODUCTS_RETRIEVED_SUCCESSFULLY = 'All products retrieved successfully';
+$PRODUCTS_RETRIEVING_ERROR = 'Something went wrong while retrieving all products';
+$PRODUCT_CREATED_SUCCESSFULLY = 'New product created successfully';
+$PRODUCT_CREATION_ERROR = 'Error in creating new product';
+$PRODUCT_UPDATED_SUCCESSFULLY = 'Product details updated successfully';
+$PRODUCT_UPDATION_ERROR = 'Error in updating [roduct';
+$PRODUCT_DELETED_SUCCESSFULLY = 'Product deleted successfully';
+$PRODUCT_DELETION_ERROR = 'Product can\'t be deleted';
+
 ?>
 

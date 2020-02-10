@@ -64,38 +64,38 @@ class BLManager extends BaseManager {
 
 
     function getProduct($dbConnection, $productId) {
-        global $TRUE, $FALSE, $NULL, $USER_RETRIEVED_SUCCESSFULLY, $USER_RETRIEVING_ERROR;
+        global $TRUE, $FALSE, $NULL, $PRODUCT_RETRIEVED_SUCCESSFULLY, $PRODUCT_RETRIEVING_ERROR;
         $dbManagerObj = new DBManager($dbConnection);
         $dbResult = $dbManagerObj->getProduct($productId);
         $responseParserObject = new ResponseParser();
         if ($dbResult != null)
-            $responseObject = $responseParserObject->createSuccessModel($TRUE, $USER_RETRIEVED_SUCCESSFULLY, $dbResult);
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_RETRIEVED_SUCCESSFULLY, $dbResult);
         else 
-            $responseObject = $responseParserObject->createErrorModel($FALSE, $USER_RETRIEVING_ERROR, $NULL);
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_RETRIEVING_ERROR, $NULL);
         return $responseObject;
     }
 
     function getAllProducts($dbConnection) {
-        global $TRUE, $FALSE, $NULL, $USERS_RETRIEVED_SUCCESSFULLY, $USERS_RETRIEVING_ERROR;
+        global $TRUE, $FALSE, $NULL, $PRODUCTS_RETRIEVED_SUCCESSFULLY, $PRODUCTS_RETRIEVING_ERROR;
         $dbManagerObj = new DBManager($dbConnection);
         $dbResult = $dbManagerObj->getAllProducts();
         $responseParserObject = new ResponseParser();
         if ($dbResult != null)
-            $responseObject = $responseParserObject->createSuccessModel($TRUE, $USERS_RETRIEVED_SUCCESSFULLY, $dbResult);
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCTS_RETRIEVED_SUCCESSFULLY, $dbResult);
         else 
-            $responseObject = $responseParserObject->createErrorModel($FALSE, $USERS_RETRIEVING_ERROR, $NULL);
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCTS_RETRIEVING_ERROR, $NULL);
         return $responseObject;
     }
 
     function createProduct($productObj, $dbConnection) {
-        global $TRUE, $FALSE, $NULL, $USER_CREATED_SUCCESSFULLY, $USER_CREATION_ERROR;    
+        global $TRUE, $FALSE, $NULL, $PRODUCT_CREATED_SUCCESSFULLY, $PRODUCT_CREATION_ERROR;    
         $dbManagerObj = new DBManager($dbConnection);
         $dbResult = $dbManagerObj->createProduct($productObj);
         $responseParserObject = new ResponseParser();
         if ($dbResult != null)
-            $responseObject = $responseParserObject->createSuccessModel($TRUE, $USER_CREATED_SUCCESSFULLY, $dbResult);
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_CREATED_SUCCESSFULLY, $dbResult);
         else 
-            $responseObject = $responseParserObject->createErrorModel($FALSE, $USER_CREATION_ERROR, $NULL);
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_CREATION_ERROR, $NULL);
         return $responseObject;
     }
 
