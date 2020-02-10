@@ -21,13 +21,13 @@ $NULL = null;
 
 #USER MODEL CONSTANTS
 $USER_RETRIEVED_SUCCESSFULLY = 'User information retrieved successfully';
-$USER_RETRIEVING_ERROR = 'Something went wrong while retrieving user information';
+$USER_RETRIEVING_ERROR = 'User information doesn\'t exist';
 $USERS_RETRIEVED_SUCCESSFULLY = 'All users retrieved successfully';
 $USERS_RETRIEVING_ERROR = 'Something went wrong while retrieving all users';
 $USER_CREATED_SUCCESSFULLY = 'New user created successfully';
 $USER_CREATION_ERROR = 'Error in creating new user';
 $USER_UPDATED_SUCCESSFULLY = 'User details updated successfully';
 $USER_UPDATION_ERROR = 'Error in updating user';
-$USER_DELETED_SUCCESSFULLY = 'New user created successfully';
+$USER_DELETED_SUCCESSFULLY = 'User deleted successfully';
 $USER_DELETION_ERROR = 'User can\'t be deleted';
 ?>
