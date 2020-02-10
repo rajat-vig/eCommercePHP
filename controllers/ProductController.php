@@ -29,6 +29,13 @@ class ProductController extends BaseController {
                 $utilityObj->sendResponse($userResponse);
                 break;
             }
+            case 'POST':
+            $productObj = $this->getProductModel($this->requestObj);
+            $blManagerObj = new BLManager();
+            $userResponse = $blManagerObj->createProduct($productObj, $this->dbConnection);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($userResponse);
+            break;
         }
     }
 }
