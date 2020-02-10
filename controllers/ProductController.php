@@ -24,17 +24,26 @@ class ProductController extends BaseController {
             } 
             else {
                 $blManagerObj = new BLManager();
-                $userResponse = $blManagerObj->getAllProducts($this->dbConnection);
+                $productResponse = $blManagerObj->getAllProducts($this->dbConnection);
                 $utilityObj = new Utility();
-                $utilityObj->sendResponse($userResponse);
+                $utilityObj->sendResponse($productResponse);
                 break;
             }
             case 'POST':
             $productObj = $this->getProductModel($this->requestObj);
             $blManagerObj = new BLManager();
-            $userResponse = $blManagerObj->createProduct($productObj, $this->dbConnection);
+            $productResponse = $blManagerObj->createProduct($productObj, $this->dbConnection);
             $utilityObj = new Utility();
-            $utilityObj->sendResponse($userResponse);
+            $utilityObj->sendResponse($productResponse);
+            break;
+
+            case 'PUT':
+            $blManagerObj = new BLManager();
+            $userCurrentDetails = $blManagerObj->getProduct($this->dbConnection, $this->productId);
+            $productObj = $this->updateProductModel($this->requestObj, $userCurrentDetails);
+            $productResponse = $blManagerObj->updateProduct($productObj, $this->dbConnection, $this->productId);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($productResponse);
             break;
         }
     }
