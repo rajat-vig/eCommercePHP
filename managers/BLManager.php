@@ -111,5 +111,17 @@ class BLManager extends BaseManager {
         return $responseObject;
     }
 
+    function deleteProduct($dbConnection, $productId) {
+        global $TRUE, $FALSE, $NULL, $PRODUCT_DELETED_SUCCESSFULLY, $PRODUCT_DELETION_ERROR;
+        $dbManagerObj = new DBManager($dbConnection);
+        $dbResult = $dbManagerObj->deleteProduct($productId);
+        $responseParserObject = new ResponseParser();
+        if ($dbResult)
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_DELETED_SUCCESSFULLY, $dbResult);
+        else 
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_DELETION_ERROR, $NULL);
+        return $responseObject;
+    }
+
 }
 ?>
