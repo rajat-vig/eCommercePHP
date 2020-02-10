@@ -45,6 +45,13 @@ class ProductController extends BaseController {
             $utilityObj = new Utility();
             $utilityObj->sendResponse($productResponse);
             break;
+
+            case 'DELETE':
+            $blManagerObj = new BLManager();
+            $productResponse = $blManagerObj->deleteProduct($this->dbConnection, $this->productId);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($productResponse);
+            break;
         }
     }
 
