@@ -22,6 +22,13 @@ class ProductController extends BaseController {
                 $utilityObj->sendResponse($productResponse);
                 break;
             } 
+            else {
+                $blManagerObj = new BLManager();
+                $userResponse = $blManagerObj->getAllProducts($this->dbConnection);
+                $utilityObj = new Utility();
+                $utilityObj->sendResponse($userResponse);
+                break;
+            }
         }
     }
 }
