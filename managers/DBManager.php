@@ -98,5 +98,17 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function getAllProducts() {
+        try {
+            $cmd = 'SELECT * FROM product';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
