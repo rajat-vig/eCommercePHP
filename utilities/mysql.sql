@@ -12,3 +12,13 @@ CREATE TABLE `eCommercePHP`.`user` (
 ENGINE = InnoDB;
 
 "ALTER TABLE `user` DROP `purchasing_history`;"
+
+CREATE TABLE `eCommercePHP`.`product` ( 
+    `product_id` INT NOT NULL AUTO_INCREMENT , 
+    `description` VARCHAR(255) NOT NULL , 
+    `image_url` VARCHAR(255) NOT NULL , 
+    `price` DECIMAL NOT NULL , 
+    `shipping_cost` DECIMAL NOT NULL , 
+    PRIMARY KEY (`product_id`)
+    ) 
+ENGINE = InnoDB;
