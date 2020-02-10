@@ -58,5 +58,15 @@ class ProductController extends BaseController {
         $productObj->shippingCost = $requestObj[$RQ_SHIPPING_COST];
     	return $productObj;
     }
+    private function updateProductModel($requestObj, $userCurrentDetails) {
+        global $RQ_DESCRIPTION, $RQ_PRICE, $RQ_PRODUCTNAME, $RQ_SHIPPING_COST, $RQ_IMAGE_URL;
+        $productObj = new ProductModel();
+        $productObj->productName = $requestObj[$RQ_PRODUCTNAME] ?? $userCurrentDetails->responseData[$RQ_PRODUCTNAME]; 
+        $productObj->description = $requestObj[$RQ_DESCRIPTION] ?? $userCurrentDetails->responseData[$RQ_DESCRIPTION];
+        $productObj->imageUrl  = $requestObj[$RQ_IMAGE_URL] ?? $userCurrentDetails->responseData[$RQ_IMAGE_URL];
+        $productObj->price  = $requestObj[$RQ_PRICE] ?? $userCurrentDetails->responseData[$RQ_PRICE];
+        $productObj->shippingCost = $requestObj[$RQ_SHIPPING_COST] ?? $userCurrentDetails->responseData[$RQ_SHIPPING_COST];
+    	return $productObj;
+    }
 }
 ?>
