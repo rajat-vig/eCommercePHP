@@ -85,5 +85,18 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function getProduct($productId) {
+        try {
+            $cmd = 'SELECT * FROM product WHERE product_id = :productId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':productId', $productId);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetch(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
