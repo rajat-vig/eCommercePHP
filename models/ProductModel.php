@@ -1,5 +1,4 @@
 <?php
-//require __DIR__.'/BaseModel.php';
 class ProductModel {
     public $productId;
     public $productName;

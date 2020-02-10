@@ -36,7 +36,7 @@ $RQ_PRODUCTID = 'product_id';
 $RQ_PRODUCTNAME = 'product_name';
 $RQ_DESCRIPTION = 'description';
 $RQ_IMAGE_URL = 'image_url';
-$PRICE = 'price';
+$RQ_PRICE = 'price';
 $RQ_SHIPPING_COST = 'shipping_cost';
 
 ?>

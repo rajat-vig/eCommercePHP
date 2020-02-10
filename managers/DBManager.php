@@ -110,5 +110,28 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function createProduct($productObj) {
+        try {
+            $cmd = 'INSERT INTO ' . 'product' . ' (product_name, description, image_url, price, shipping_cost) ' .
+            'VALUES (:productName, :description, :imageUrl, :price, :shippingCost)';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':productName', $productObj->productName);
+            $sql->bindValue(':description', $productObj->description);
+            $sql->bindValue(':imageUrl', $productObj->imageUrl);
+            $sql->bindValue(':price', $productObj->price);
+            $sql->bindValue(':shippingCost', $productObj->shippingCost);
+            $sql->execute();
+            $last_id = $this->dbConnection->lastInsertId();
+            if ($sql->rowCount() > 0) {
+                $cmd = 'SELECT * FROM product WHERE product_id = ' . $last_id;
+                $sql = $this->dbConnection->prepare($cmd);
+                $sql->execute();
+                return $sql->fetch(PDO::FETCH_ASSOC);
+            }
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
