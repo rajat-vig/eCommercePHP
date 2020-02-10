@@ -38,5 +38,16 @@ class ProductController extends BaseController {
             break;
         }
     }
+
+    private function getProductModel($requestObj) {
+        global $RQ_DESCRIPTION, $RQ_PRICE, $RQ_PRODUCTNAME, $RQ_SHIPPING_COST, $RQ_IMAGE_URL;
+        $productObj = new ProductModel();
+        $productObj->productName = $requestObj[$RQ_PRODUCTNAME]; 
+        $productObj->description = $requestObj[$RQ_DESCRIPTION];
+        $productObj->imageUrl  = $requestObj[$RQ_IMAGE_URL];
+        $productObj->price = $requestObj[$RQ_PRICE];
+        $productObj->shippingCost = $requestObj[$RQ_SHIPPING_COST];
+    	return $productObj;
+    }
 }
 ?>

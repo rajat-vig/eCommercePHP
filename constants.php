@@ -30,4 +30,14 @@ $USER_UPDATED_SUCCESSFULLY = 'User details updated successfully';
 $USER_UPDATION_ERROR = 'Error in updating user';
 $USER_DELETED_SUCCESSFULLY = 'User deleted successfully';
 $USER_DELETION_ERROR = 'User can\'t be deleted';
+
+#Product Constants
+$RQ_PRODUCTID = 'product_id';
+$RQ_PRODUCTNAME = 'product_name';
+$RQ_DESCRIPTION = 'description';
+$RQ_IMAGE_URL = 'image_url';
+$PRICE = 'price';
+$RQ_SHIPPING_COST = 'shipping_cost';
+
 ?>
+
