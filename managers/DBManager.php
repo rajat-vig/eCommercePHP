@@ -133,5 +133,28 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function updateProduct($productObj, $productId) {
+        try {
+            $cmd = 'UPDATE ' . 'product' . ' SET product_name = :productName, description = :description, image_url = :imageUrl, price = :price, shipping_cost =  :shippingCost' .
+            ' WHERE product_id = :productId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':productId', $productId);
+            $sql->bindValue(':productName', $productObj->productName);
+            $sql->bindValue(':description', $productObj->description);
+            $sql->bindValue(':imageUrl', $productObj->imageUrl);
+            $sql->bindValue(':price', $productObj->price);
+            $sql->bindValue(':shippingCost', $productObj->shippingCost);
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $cmd = 'SELECT * FROM product WHERE product_id = ' . $productId;
+                $sql = $this->dbConnection->prepare($cmd);
+                $sql->execute();
+                return $sql->fetch(PDO::FETCH_ASSOC);
+            }
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>

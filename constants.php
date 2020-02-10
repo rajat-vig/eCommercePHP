@@ -47,7 +47,7 @@ $PRODUCTS_RETRIEVING_ERROR = 'Something went wrong while retrieving all products
 $PRODUCT_CREATED_SUCCESSFULLY = 'New product created successfully';
 $PRODUCT_CREATION_ERROR = 'Error in creating new product';
 $PRODUCT_UPDATED_SUCCESSFULLY = 'Product details updated successfully';
-$PRODUCT_UPDATION_ERROR = 'Error in updating [roduct';
+$PRODUCT_UPDATION_ERROR = 'Error in updating product';
 $PRODUCT_DELETED_SUCCESSFULLY = 'Product deleted successfully';
 $PRODUCT_DELETION_ERROR = 'Product can\'t be deleted';
 
