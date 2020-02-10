@@ -1,6 +1,6 @@
 <?php
-require __DIR__.'/BaseModel.php';
-class ProductModel extends BaseModel {
+//require __DIR__.'/BaseModel.php';
+class ProductModel {
     public $productId;
     public $productName;
     public $description;

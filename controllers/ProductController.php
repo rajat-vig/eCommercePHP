@@ -1,7 +1,5 @@
 <?php
-require __DIR__.'/BaseController.php';
-
-class ProductController {
+class ProductController extends BaseController {
     private $dbConnection;
     private $requestMethod;
     private $productId;

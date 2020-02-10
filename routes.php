@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/controllers/UserController.php';
+require __DIR__.'/controllers/ProductController.php';
 
 switch ($endPoint) {
     case 'user':
