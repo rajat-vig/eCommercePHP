@@ -22,3 +22,10 @@ CREATE TABLE `eCommercePHP`.`product` (
     PRIMARY KEY (`product_id`)
     ) 
 ENGINE = InnoDB;
+
+ALTER TABLE product ADD COLUMN product_name VARCHAR(255) AFTER product_id; 
+-- UNIQUE & NOT NULL
+
+
+ALTER TABLE `product` CHANGE `price` `price` DECIMAL(10,2) NOT NULL;
+ALTER TABLE `product` CHANGE `shipping_cost` `shipping_cost` DECIMAL(10,2) NOT NULL;
