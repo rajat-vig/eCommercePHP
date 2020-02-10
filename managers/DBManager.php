@@ -156,5 +156,17 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function deleteProduct($productId) {
+        try {
+            $cmd = 'DELETE FROM product WHERE product_id = :productId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':productId', $productId);
+            $sql->execute();
+            return $sql->rowCount() > 0 ? true : false;
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
