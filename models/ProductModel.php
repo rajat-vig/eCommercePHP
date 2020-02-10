@@ -1,5 +1,5 @@
 <?php
-class ProductModel {
+class ProductModel extends BaseModel{
     public $productId;
     public $productName;
     public $description;
