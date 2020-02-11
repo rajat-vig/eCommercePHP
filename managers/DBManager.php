@@ -171,7 +171,7 @@ class DBManager {
 
     function showProducts($userId) {
             try {
-                $cmd = 'SELECT * FROM cart as c inner join product as p on c.product_id = p.product_id WHERE user_id = :userId';
+                $cmd = 'SELECT * FROM cart as c INNER JOIN product AS p ON c.product_id = p.product_id WHERE user_id = :userId';
                 $sql = $this->dbConnection->prepare($cmd);
                 $sql->bindValue(':userId', $userId);
                 $sql->execute();

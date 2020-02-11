@@ -20,6 +20,13 @@ class CartController extends BaseController {
             $utilityObj = new Utility();
             $utilityObj->sendResponse($cartResponse);
             break;
+            case 'POST':
+            $cartObj = $this->getCartModel($this->requestObj);
+            $blManagerObj = new BLManager();
+            $cartResponse = $blManagerObj->createProduct($cartObj, $this->dbConnection);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($cartResponse);
+            break;
         }
     }
 }
