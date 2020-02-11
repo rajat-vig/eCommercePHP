@@ -175,8 +175,16 @@ class DBManager {
             $sql = $this->dbConnection->prepare($cmd);
             $sql->bindValue(':userId', $userId);
             $sql->execute();
-            if ($sql->rowCount() > 0)
-                return $sql->fetch(PDO::FETCH_ASSOC);
+            if ($sql->rowCount() > 0) {
+                $cartItems = $sql->fetchAll(PDO::FETCH_ASSOC);
+                for($index = 0; $index < count($cartItems); $index++) {
+                    $cartItem = $cartItems[$index];
+                    $productId = $cartItems[$index]['product_id'];
+                    $productDetails = $this->getProduct($productId);
+                    $result[$index] = array_merge($cartItem, $productDetails);
+                }
+                return $result;
+            }
         } catch(Exception $e){
             echo $e->getMessage();
         }
