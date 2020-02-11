@@ -184,8 +184,28 @@ class DBManager {
 
     function addProduct($cartObj) {
         try {
-            $cmd = 'INSERT INTO ' . 'cart' . ' (user_id, product_id, quantity) ' .
-            'VALUES (:userId, :productId, :quantity)';
+            $updateResult = $this->updateProducts($cartObj);
+            if(is_null($updateResult)) {
+                $cmd = 'INSERT INTO ' . 'cart' . ' (user_id, product_id, quantity) ' .
+                'VALUES (:userId, :productId, :quantity)';
+                $sql = $this->dbConnection->prepare($cmd);
+                $sql->bindValue(':userId', $cartObj->userId);
+                $sql->bindValue(':productId', $cartObj->productId);
+                $sql->bindValue(':quantity', $cartObj->quantity);
+                $sql->execute();
+                if ($sql->rowCount() > 0)
+                    return $this->showProducts($cartObj->userId);    
+            } else
+                return $updateResult;
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+
+    function updateProducts($cartObj) {
+        try {
+            $cmd = 'UPDATE ' . 'cart' . ' SET quantity = quantity + :quantity' .
+            ' WHERE user_id = :userId && product_id = :productId';
             $sql = $this->dbConnection->prepare($cmd);
             $sql->bindValue(':userId', $cartObj->userId);
             $sql->bindValue(':productId', $cartObj->productId);
@@ -193,26 +213,6 @@ class DBManager {
             $sql->execute();
             if ($sql->rowCount() > 0)
                 return $this->showProducts($cartObj->userId);
-        } catch(Exception $e){
-            echo $e->getMessage();
-        }
-    }
-
-    function updateProducts($cartObj, $userId) {
-        try {
-            $cmd = 'UPDATE ' . 'cart' . ' SET quantity = :quantity' .
-            ' WHERE user_id = :userId && product_id = :productId';
-            $sql = $this->dbConnection->prepare($cmd);
-            $sql->bindValue(':userId', $cartObj->userId);
-            $sql->bindValue(':productId', $cartObj->productId);
-            $sql->bindValue(':quantity', $cartObj->quantity);
-            $sql->execute();
-            if ($sql->rowCount() > 0) {
-                $cmd = 'SELECT * FROM cart WHERE user_id = ' . $userId;
-                $sql = $this->dbConnection->prepare($cmd);
-                $sql->execute();
-                return $sql->fetch(PDO::FETCH_ASSOC);
-            }
         } catch(Exception $e){
             echo $e->getMessage();
         }

@@ -13,6 +13,7 @@ class CartController extends BaseController {
     }
 
     public function processRequest() {
+        global $RQ_USERID;
         switch ($this->requestMethod) {
             case 'GET':
             $blManagerObj = new BLManager();
@@ -29,9 +30,9 @@ class CartController extends BaseController {
             break;
             case 'PUT':
             $blManagerObj = new BLManager();
-            $cartCurrentDetails = $blManagerObj->showProducts($this->dbConnection, $this->userId);
+            $cartCurrentDetails = $blManagerObj->showProducts($this->dbConnection, $this->requestObj[$RQ_USERID]);
             $cartObj = $this->updateCartModel($this->requestObj, $cartCurrentDetails);
-            $cartResponse = $blManagerObj->updateProducts($cartObj, $this->dbConnection, $this->userId);
+            $cartResponse = $blManagerObj->updateProducts($cartObj, $this->dbConnection);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($cartResponse);
             break;
