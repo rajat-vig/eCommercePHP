@@ -31,7 +31,7 @@ class CartController extends BaseController {
             $blManagerObj = new BLManager();
             $cartCurrentDetails = $blManagerObj->showProducts($this->dbConnection, $this->userId);
             $cartObj = $this->updateCartModel($this->requestObj, $cartCurrentDetails);
-            $cartResponse = $blManagerObj->updateProducts($productObj, $this->dbConnection, $this->userId);
+            $cartResponse = $blManagerObj->updateProducts($cartObj, $this->dbConnection, $this->userId);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($cartResponse);
             break;
@@ -44,6 +44,14 @@ class CartController extends BaseController {
         $cartObj->userId = $requestObj[$RQ_USERID]; 
         $cartObj->productId = $requestObj[$RQ_PRODUCTID];
         $cartObj->quantity = $requestObj[$RQ_QUANTITY];
+    	return $cartObj;
+    }
+    private function updateCartModel($requestObj, $cartCurrentDetails) {
+        global $RQ_USERID, $RQ_PRODUCTID, $RQ_QUANTITY;
+        $cartObj = new CartModel();
+        $cartObj->userId = $requestObj[$RQ_USERID] ?? $cartCurrentDetails->responseData[$RQ_USERID]; 
+        $cartObj->productId = $requestObj[$RQ_PRODUCTID] ?? $cartCurrentDetails->responseData[$RQ_PRODUCTID];
+        $cartObj->quantity  = $requestObj[$RQ_QUANTITY] ?? $cartCurrentDetails->responseData[$RQ_QUANTITY];
     	return $cartObj;
     }
 }
