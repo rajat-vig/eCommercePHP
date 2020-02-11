@@ -11,5 +11,9 @@ switch ($endPoint) {
     $controller = new ProductController($dbConnection, $requestMethod, $userId, $requestObject);
     $controller->processRequest();
     break;
+    case 'cart':
+    $controller = new CartController($dbConnection, $requestMethod, $userId, $requestObject);
+    $controller->processRequest();
+    break;
 }
 ?>
