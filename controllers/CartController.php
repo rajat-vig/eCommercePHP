@@ -37,8 +37,9 @@ class CartController extends BaseController {
             $utilityObj->sendResponse($cartResponse);
             break;
             case 'DELETE':
+            $cartObj = $this->getCartModel($this->requestObj);
             $blManagerObj = new BLManager();
-            $cartResponse = $blManagerObj->deleteProducts($this->dbConnection);
+            $cartResponse = $blManagerObj->deleteProducts($cartObj, $this->dbConnection);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($cartResponse);
             break;
