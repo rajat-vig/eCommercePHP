@@ -13,6 +13,14 @@ class CartController extends BaseController {
     }
 
     public function processRequest() {
+        switch ($this->requestMethod) {
+            case 'GET':
+            $blManagerObj = new BLManager();
+            $cartResponse = $blManagerObj->showProducts($this->dbConnection, $this->userId);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($cartResponse);
+            break;
+        }
     }
 }
 ?>
