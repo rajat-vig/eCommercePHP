@@ -147,5 +147,17 @@ class BLManager extends BaseManager {
         return $responseObject;
     }
 
+    function updateProducts($cartObj, $dbConnection, $userId) {
+        global $TRUE, $FALSE, $NULL, $PRODUCT_UPDATED_SUCCESSFULLY, $PRODUCT_UPDATION_ERROR;    
+        $dbManagerObj = new DBManager($dbConnection);
+        $dbResult = $dbManagerObj->updateProducts($cartObj, $userId);
+        $responseParserObject = new ResponseParser();
+        if ($dbResult != null)
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_UPDATED_SUCCESSFULLY, $dbResult);
+        else 
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_UPDATION_ERROR, $NULL);
+        return $responseObject;
+    }
+
 }
 ?>

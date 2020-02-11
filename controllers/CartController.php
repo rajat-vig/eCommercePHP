@@ -37,7 +37,6 @@ class CartController extends BaseController {
             break;
         }
     }
-
     private function getCartModel($requestObj) {
         global $RQ_USERID, $RQ_PRODUCTID, $RQ_QUANTITY;
         $cartObj = new CartModel();
