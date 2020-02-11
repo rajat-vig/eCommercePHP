@@ -17,7 +17,7 @@ class DBManager {
             echo $e->getMessage();
         }
     }
-
+    
     function getAllUsers() {
         try {
             $cmd = 'SELECT * FROM user';

@@ -36,6 +36,12 @@ class CartController extends BaseController {
             $utilityObj = new Utility();
             $utilityObj->sendResponse($cartResponse);
             break;
+            case 'DELETE':
+            $blManagerObj = new BLManager();
+            $cartResponse = $blManagerObj->deleteProducts($this->dbConnection);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($cartResponse);
+            break;
         }
     }
     private function getCartModel($requestObj) {

@@ -36,7 +36,6 @@ class ProductController extends BaseController {
             $utilityObj = new Utility();
             $utilityObj->sendResponse($productResponse);
             break;
-
             case 'PUT':
             $blManagerObj = new BLManager();
             $userCurrentDetails = $blManagerObj->getProduct($this->dbConnection, $this->productId);
@@ -45,7 +44,6 @@ class ProductController extends BaseController {
             $utilityObj = new Utility();
             $utilityObj->sendResponse($productResponse);
             break;
-
             case 'DELETE':
             $blManagerObj = new BLManager();
             $productResponse = $blManagerObj->deleteProduct($this->dbConnection, $this->productId);
