@@ -201,5 +201,18 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function deleteProducts($cartObj) {
+        try {
+            $cmd = 'DELETE FROM cart WHERE user_id = :userId && product_id = :productId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':userId', $cartObj->userId);
+            $sql->bindValue(':productId', $cartObj->productId);
+            $sql->execute();
+            return $sql->rowCount() > 0 ? true : false;
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>

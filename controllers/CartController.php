@@ -50,7 +50,7 @@ class CartController extends BaseController {
         $cartObj = new CartModel();
         $cartObj->userId = $requestObj[$RQ_USERID]; 
         $cartObj->productId = $requestObj[$RQ_PRODUCTID];
-        $cartObj->quantity = $requestObj[$RQ_QUANTITY];
+        $cartObj->quantity = $requestObj[$RQ_QUANTITY] ?? 1;
     	return $cartObj;
     }
     private function updateCartModel($requestObj, $cartCurrentDetails) {
