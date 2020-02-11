@@ -51,5 +51,8 @@ $PRODUCT_UPDATION_ERROR = 'Error in updating product';
 $PRODUCT_DELETED_SUCCESSFULLY = 'Product deleted successfully';
 $PRODUCT_DELETION_ERROR = 'Product can\'t be deleted';
 
+#Cart Constants
+$RQ_QUANTITY = $quantity;
+
 ?>
 

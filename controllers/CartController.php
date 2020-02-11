@@ -23,11 +23,20 @@ class CartController extends BaseController {
             case 'POST':
             $cartObj = $this->getCartModel($this->requestObj);
             $blManagerObj = new BLManager();
-            $cartResponse = $blManagerObj->createProduct($cartObj, $this->dbConnection);
+            $cartResponse = $blManagerObj->addProduct($cartObj, $this->dbConnection);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($cartResponse);
             break;
         }
+    }
+
+    private function getCartModel($requestObj) {
+        global $RQ_USERID, $RQ_PRODUCTID, $RQ_QUANTITY;
+        $cartObj = new CartModel();
+        $cartObj->userId = $requestObj[$RQ_USERID]; 
+        $cartObj->productId = $requestObj[$RQ_PRODUCTID];
+        $cartObj->quantity = $requestObj[$RQ_QUANTITY];
+    	return $cartObj;
     }
 }
 ?>
