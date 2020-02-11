@@ -170,16 +170,32 @@ class DBManager {
     }
 
     function showProducts($userId) {
-            try {
-                $cmd = 'SELECT * FROM cart as c INNER JOIN product AS p ON c.product_id = p.product_id WHERE user_id = :userId';
-                $sql = $this->dbConnection->prepare($cmd);
-                $sql->bindValue(':userId', $userId);
-                $sql->execute();
-                if ($sql->rowCount() > 0)
-                    return $sql->fetchAll(PDO::FETCH_ASSOC);
-            } catch(Exception $e){
-                echo $e->getMessage();
-            }
+        try {
+            $cmd = 'SELECT * FROM cart as c INNER JOIN product AS p ON c.product_id = p.product_id WHERE user_id = :userId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':userId', $userId);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+
+    function addProduct($cartObj) {
+        try {
+            $cmd = 'INSERT INTO ' . 'cart' . ' (user_id, product_id, quantity) ' .
+            'VALUES (:userId, :productId, :quantity)';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':userId', $cartObj->userId);
+            $sql->bindValue(':productId', $cartObj->productId);
+            $sql->bindValue(':quantity', $cartObj->quantity);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $this->showProducts($cartObj->userId);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
     }
 }
 ?>
