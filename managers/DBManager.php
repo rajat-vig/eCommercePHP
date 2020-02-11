@@ -197,5 +197,25 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function updateProducts($cartObj, $userId) {
+        try {
+            $cmd = 'UPDATE ' . 'cart' . ' SET quantity = :quantity' .
+            ' WHERE user_id = :userId && product_id = :productId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':userId', $cartObj->userId);
+            $sql->bindValue(':productId', $cartObj->productId);
+            $sql->bindValue(':quantity', $cartObj->quantity);
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $cmd = 'SELECT * FROM cart WHERE user_id = ' . $userId;
+                $sql = $this->dbConnection->prepare($cmd);
+                $sql->execute();
+                return $sql->fetch(PDO::FETCH_ASSOC);
+            }
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
