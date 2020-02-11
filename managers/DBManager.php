@@ -168,5 +168,18 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function showProducts($userId) {
+        try {
+            $cmd = 'SELECT * FROM cart WHERE user_id = :userId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':userId', $userId);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetch(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
