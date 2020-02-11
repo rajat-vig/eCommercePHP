@@ -41,12 +41,8 @@ class DBManager {
             $sql->bindValue(':shipping_address', $userObj->shippingAddress);
             $sql->execute();
             $last_id = $this->dbConnection->lastInsertId();
-            if ($sql->rowCount() > 0) {
-                $cmd = 'SELECT * FROM user WHERE user_id = ' . $last_id;
-                $sql = $this->dbConnection->prepare($cmd);
-                $sql->execute();
-                return $sql->fetch(PDO::FETCH_ASSOC);
-            }
+            if ($sql->rowCount() > 0)
+                $this->getUser($last_id);
         } catch(Exception $e){
             echo $e->getMessage();
         }
@@ -63,12 +59,8 @@ class DBManager {
             $sql->bindValue(':password', $userObj->password);
             $sql->bindValue(':shippingAddress', $userObj->shippingAddress);
             $sql->execute();
-            if ($sql->rowCount() > 0) {
-                $cmd = 'SELECT * FROM user WHERE user_id = ' . $userId;
-                $sql = $this->dbConnection->prepare($cmd);
-                $sql->execute();
-                return $sql->fetch(PDO::FETCH_ASSOC);
-            }
+            if ($sql->rowCount() > 0)
+                $this->getUser($userId);
         } catch(Exception $e){
             echo $e->getMessage();
         }
@@ -123,12 +115,8 @@ class DBManager {
             $sql->bindValue(':shippingCost', $productObj->shippingCost);
             $sql->execute();
             $last_id = $this->dbConnection->lastInsertId();
-            if ($sql->rowCount() > 0) {
-                $cmd = 'SELECT * FROM product WHERE product_id = ' . $last_id;
-                $sql = $this->dbConnection->prepare($cmd);
-                $sql->execute();
-                return $sql->fetch(PDO::FETCH_ASSOC);
-            }
+            if ($sql->rowCount() > 0) 
+                $this->getProduct($last_id);
         } catch(Exception $e){
             echo $e->getMessage();
         }
@@ -146,12 +134,8 @@ class DBManager {
             $sql->bindValue(':price', $productObj->price);
             $sql->bindValue(':shippingCost', $productObj->shippingCost);
             $sql->execute();
-            if ($sql->rowCount() > 0) {
-                $cmd = 'SELECT * FROM product WHERE product_id = ' . $productId;
-                $sql = $this->dbConnection->prepare($cmd);
-                $sql->execute();
-                return $sql->fetch(PDO::FETCH_ASSOC);
-            }
+            if ($sql->rowCount() > 0)
+                $this->getProduct($productId);
         } catch(Exception $e){
             echo $e->getMessage();
         }
