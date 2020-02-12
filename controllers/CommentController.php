@@ -17,7 +17,14 @@ class CommentController extends BaseController {
     public function processRequest() {
         switch ($this->requestMethod) {
             case 'GET':
-            if ($this->productId) {
+            if ($this->productId && $this->secondId) {
+                $blManagerObj = new BLManager();
+                $commentsResponse = $blManagerObj->getUserProductComment($this->dbConnection, $this->productId, $this->secondId);
+                $utilityObj = new Utility();
+                $utilityObj->sendResponse($commentsResponse);
+                break;
+            }
+            else if ($this->productId) {
                 $blManagerObj = new BLManager();
                 $commentsResponse = $blManagerObj->getProductComments($this->dbConnection, $this->productId);
                 $utilityObj = new Utility();
