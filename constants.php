@@ -1,20 +1,20 @@
 <?php
 
-#Database Constants
+#DATABASE CONSTANTS
 $DB_HOST = 'localhost';
 $DB_PORT = '8080';
 $DB_DATABASE = 'eCommercePHP';
 $DB_USERNAME = 'root';
 $DB_PASSWORD = '';
 
-#User Constants
+#USER CONSTANTS
 $RQ_USERID = 'user_id';
 $RQ_USERNAME = 'user_name';
 $RQ_EMAIL = 'email';
 $RQ_PASSWORD = 'password';
 $RQ_SHIPPING_ADDRESS = 'shipping_address';
 
-#General
+#GENERAL
 $TRUE = true;
 $FALSE = false;
 $NULL = null;
@@ -31,7 +31,7 @@ $USER_UPDATION_ERROR = 'Error in updating user';
 $USER_DELETED_SUCCESSFULLY = 'User deleted successfully';
 $USER_DELETION_ERROR = 'User can\'t be deleted';
 
-#Product Constants
+#PRODUCT CONSTANTS
 $RQ_PRODUCTID = 'product_id';
 $RQ_PRODUCTNAME = 'product_name';
 $RQ_DESCRIPTION = 'description';
@@ -51,7 +51,7 @@ $PRODUCT_UPDATION_ERROR = 'Error in updating product';
 $PRODUCT_DELETED_SUCCESSFULLY = 'Product deleted successfully';
 $PRODUCT_DELETION_ERROR = 'Product can\'t be deleted';
 
-#Cart Constants
+#CART CONSTANTS
 $RQ_QUANTITY = 'quantity';
 
 #CART MODEL CONSTANTS
@@ -64,4 +64,8 @@ $CART_UPDATION_ERROR = 'Error in updating product';
 $PRODUCT_REMOVED_SUCCESSFULLY = 'Product deleted from cart';
 $PRODUCT_REMOVING_ERROR = 'Product can\'t be deleted';
 
+#COMMENT CONSTANTS
+$RQ_COMMENTID = 'comment_id';
+$RQ_COMMENT_RATING = 'rating';
+$RQ_COMMENT_TEXT = 'text';
 ?>
