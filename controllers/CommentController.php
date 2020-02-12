@@ -41,9 +41,17 @@ class CommentController extends BaseController {
             case 'POST':
             $commentObj = $this->getCommentModel($this->requestObj);
             $blManagerObj = new BLManager();
-            $productResponse = $blManagerObj->addComment($commentObj, $this->dbConnection);
+            $commentResponse = $blManagerObj->addComment($commentObj, $this->dbConnection);
             $utilityObj = new Utility();
-            $utilityObj->sendResponse($productResponse);
+            $utilityObj->sendResponse($commentResponse);
+            case 'PUT':
+            global $RQ_USERID, $RQ_PRODUCTID;
+            $blManagerObj = new BLManager();
+            $commentCurrentDetails = $blManagerObj->getUserProductComment($this->dbConnection, $this->requestObj[$RQ_PRODUCTID], $this->requestObj[$RQ_USERID]);
+            $productObj = $this->updateCommentModel($this->requestObj, $commentCurrentDetails);
+            $commentResponse = $blManagerObj->updateComment($productObj, $this->dbConnection, $this->requestObj[$RQ_PRODUCTID]);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($commentResponse);
         } 
     }
     private function getCommentModel($requestObj) {
