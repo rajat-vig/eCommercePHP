@@ -38,6 +38,12 @@ class CommentController extends BaseController {
                 $utilityObj->sendResponse($commentsResponse);
                 break;
             }
+            case 'POST':
+            $commentObj = $this->getCommentModel($this->requestObj);
+            $blManagerObj = new BLManager();
+            $productResponse = $blManagerObj->addComment($commentObj, $this->dbConnection);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($productResponse);
         } 
     }
 }
