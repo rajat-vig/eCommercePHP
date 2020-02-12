@@ -46,5 +46,14 @@ class CommentController extends BaseController {
             $utilityObj->sendResponse($productResponse);
         } 
     }
+    private function getCommentModel($requestObj) {
+        global $RQ_USERID, $RQ_PRODUCTID, $RQ_COMMENT_RATING, $RQ_COMMENT_TEXT;
+        $commentObj = new CommentModel();
+        $commentObj->userId = $requestObj[$RQ_USERID]; 
+        $commentObj->productId = $requestObj[$RQ_PRODUCTID];
+        $commentObj->rating  = $requestObj[$RQ_COMMENT_RATING];
+        $commentObj->text = $requestObj[$RQ_COMMENT_TEXT];
+    	return $commentObj;
+    }
 }
 ?>
