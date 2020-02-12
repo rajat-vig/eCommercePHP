@@ -215,6 +215,20 @@ class DBManager {
         }
     }
 
+    function getUserProductComment($productId, $userId) {
+        try {
+            $cmd = 'SELECT * FROM comment WHERE product_id = :productId && user_id = :userId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':productId', $productId);
+            $sql->bindValue(':userId', $userId);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetch(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+
     function getProductComments($productId) {
         try {
             $cmd = 'SELECT * FROM comment WHERE product_id = :productId';
