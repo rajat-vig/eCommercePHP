@@ -38,3 +38,15 @@ CREATE TABLE cart (
     FOREIGN KEY (user_id) REFERENCES user(user_id),
     FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
+
+CREATE TABLE `eCommercePHP`.`comment` ( 
+    `comment_id` INT NOT NULL AUTO_INCREMENT ,
+    `user_id` INT NOT NULL ,
+    `product_id` INT NOT NULL , 
+    `rating` FLOAT NOT NULL , 
+    `text` VARCHAR(255) NOT NULL , 
+    PRIMARY KEY (`comment_id`),
+    FOREIGN KEY (`user_id`) REFERENCES user(`user_id`),
+    FOREIGN KEY (`product_id`) REFERENCES product(`product_id`)
+    ) 
+ENGINE = InnoDB;
