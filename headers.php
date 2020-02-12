@@ -15,8 +15,11 @@ $uri = explode('/', $uri);
 # get the endpoint present in the url to direct the request
 $endPoint = isset($uri[3]) ? $uri[3] : null;
 
-# the user id is, of course, optional and must be a number:
+# the user id / product id is, of course, optional and must be a number:
 $userId = isset($uri[4]) ? (int) $uri[4] : null;
+
+# the second id is, of course, optional and must be a number:
+$secondId = isset($uri[5]) ? (int) $uri[5] : null;
 
 #to identify the appropriate action
 $requestMethod = $_SERVER["REQUEST_METHOD"];
