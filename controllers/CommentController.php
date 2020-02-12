@@ -26,9 +26,9 @@ class CommentController extends BaseController {
             }
             else {
                 $blManagerObj = new BLManager();
-                $productResponse = $blManagerObj->getUserComments($this->dbConnection);
+                $commentsResponse = $blManagerObj->getUserComments($this->dbConnection);
                 $utilityObj = new Utility();
-                $utilityObj->sendResponse($productResponse);
+                $utilityObj->sendResponse($commentsResponse);
                 break;
             }
         } 
