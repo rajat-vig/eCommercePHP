@@ -48,8 +48,8 @@ class CommentController extends BaseController {
             global $RQ_USERID, $RQ_PRODUCTID;
             $blManagerObj = new BLManager();
             $commentCurrentDetails = $blManagerObj->getUserProductComment($this->dbConnection, $this->requestObj[$RQ_PRODUCTID], $this->requestObj[$RQ_USERID]);
-            $productObj = $this->updateCommentModel($this->requestObj, $commentCurrentDetails);
-            $commentResponse = $blManagerObj->updateComment($productObj, $this->dbConnection, $this->requestObj[$RQ_PRODUCTID]);
+            $commentObj = $this->updateCommentModel($this->requestObj, $commentCurrentDetails);
+            $commentResponse = $blManagerObj->updateComment($commentObj, $this->dbConnection);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($commentResponse);
         } 
@@ -64,8 +64,9 @@ class CommentController extends BaseController {
     	return $commentObj;
     }
     private function updateCommentModel($requestObj, $commentCurrentDetails) {
-        global $RQ_USERID, $RQ_PRODUCTID, $RQ_COMMENT_RATING, $RQ_COMMENT_TEXT;
+        global $RQ_USERID, $RQ_PRODUCTID, $RQ_COMMENT_RATING, $RQ_COMMENT_TEXT, $RQ_COMMENTID;
         $commentObj = new CommentModel();
+        $commentObj->commentId = $requestObj[$RQ_COMMENTID] ?? $commentCurrentDetails->responseData[$RQ_COMMENTID];
         $commentObj->userId = $requestObj[$RQ_USERID] ?? $commentCurrentDetails->responseData[$RQ_USERID]; 
         $commentObj->productId = $requestObj[$RQ_PRODUCTID] ?? $commentCurrentDetails->responseData[$RQ_PRODUCTID];
         $commentObj->rating  = $requestObj[$RQ_COMMENT_RATING] ?? $commentCurrentDetails->responseData[$RQ_COMMENT_RATING];
