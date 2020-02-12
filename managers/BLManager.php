@@ -207,5 +207,17 @@ class BLManager extends BaseManager {
         return $responseObject;
     }
 
+    function addComment($commentObj, $dbConnection) {
+        global $TRUE, $FALSE, $NULL, $PRODUCT_CREATED_SUCCESSFULLY, $PRODUCT_CREATION_ERROR;    
+        $dbManagerObj = new DBManager($dbConnection);
+        $dbResult = $dbManagerObj->addComment($commentObj);
+        $responseParserObject = new ResponseParser();
+        if ($dbResult != null)
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_CREATED_SUCCESSFULLY, $dbResult);
+        else 
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_CREATION_ERROR, $NULL);
+        return $responseObject;
+    }
+
 }
 ?>
