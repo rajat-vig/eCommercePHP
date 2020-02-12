@@ -227,5 +227,18 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+    
+    function getUserComments() {
+        try {
+            $cmd = 'SELECT * FROM comment WHERE user_id = :userId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':userId', 5);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
