@@ -271,5 +271,21 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function updateComment($commentObj) {
+        try {
+            $cmd = 'UPDATE ' . 'comment' . ' SET rating = :rating, text = :text' .
+            ' WHERE comment_id = :commentId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':commentId', $commentObj->commentId);
+            $sql->bindValue(':rating', $commentObj->rating);
+            $sql->bindValue(':text', $commentObj->text);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $this->getUserProductComment($commentObj->productId, $commentObj->userId);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
