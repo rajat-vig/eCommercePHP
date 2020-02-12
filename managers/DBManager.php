@@ -254,5 +254,22 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function addComment($commentObj) {
+        try {
+            $cmd = 'INSERT INTO ' . 'comment' . ' (user_id, product_id, rating, text) ' .
+            'VALUES (:userId, :productId, :rating, :text)';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':userId', $commentObj->userId);
+            $sql->bindValue(':productId', $commentObj->productId);
+            $sql->bindValue(':rating', $commentObj->rating);
+            $sql->bindValue(':text', $commentObj->text);
+            $sql->execute();
+            if ($sql->rowCount() > 0) 
+                return $this->getProductComments($commentObj->productId);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
