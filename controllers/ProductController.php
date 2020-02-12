@@ -38,8 +38,8 @@ class ProductController extends BaseController {
             break;
             case 'PUT':
             $blManagerObj = new BLManager();
-            $userCurrentDetails = $blManagerObj->getProduct($this->dbConnection, $this->productId);
-            $productObj = $this->updateProductModel($this->requestObj, $userCurrentDetails);
+            $productCurrentDetails = $blManagerObj->getProduct($this->dbConnection, $this->productId);
+            $productObj = $this->updateProductModel($this->requestObj, $productCurrentDetails);
             $productResponse = $blManagerObj->updateProduct($productObj, $this->dbConnection, $this->productId);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($productResponse);
@@ -63,14 +63,14 @@ class ProductController extends BaseController {
         $productObj->shippingCost = $requestObj[$RQ_SHIPPING_COST];
     	return $productObj;
     }
-    private function updateProductModel($requestObj, $userCurrentDetails) {
+    private function updateProductModel($requestObj, $productCurrentDetails) {
         global $RQ_DESCRIPTION, $RQ_PRICE, $RQ_PRODUCTNAME, $RQ_SHIPPING_COST, $RQ_IMAGE_URL;
         $productObj = new ProductModel();
-        $productObj->productName = $requestObj[$RQ_PRODUCTNAME] ?? $userCurrentDetails->responseData[$RQ_PRODUCTNAME]; 
-        $productObj->description = $requestObj[$RQ_DESCRIPTION] ?? $userCurrentDetails->responseData[$RQ_DESCRIPTION];
-        $productObj->imageUrl  = $requestObj[$RQ_IMAGE_URL] ?? $userCurrentDetails->responseData[$RQ_IMAGE_URL];
-        $productObj->price  = $requestObj[$RQ_PRICE] ?? $userCurrentDetails->responseData[$RQ_PRICE];
-        $productObj->shippingCost = $requestObj[$RQ_SHIPPING_COST] ?? $userCurrentDetails->responseData[$RQ_SHIPPING_COST];
+        $productObj->productName = $requestObj[$RQ_PRODUCTNAME] ?? $productCurrentDetails->responseData[$RQ_PRODUCTNAME]; 
+        $productObj->description = $requestObj[$RQ_DESCRIPTION] ?? $productCurrentDetails->responseData[$RQ_DESCRIPTION];
+        $productObj->imageUrl  = $requestObj[$RQ_IMAGE_URL] ?? $productCurrentDetails->responseData[$RQ_IMAGE_URL];
+        $productObj->price  = $requestObj[$RQ_PRICE] ?? $productCurrentDetails->responseData[$RQ_PRICE];
+        $productObj->shippingCost = $requestObj[$RQ_SHIPPING_COST] ?? $productCurrentDetails->responseData[$RQ_SHIPPING_COST];
     	return $productObj;
     }
 }

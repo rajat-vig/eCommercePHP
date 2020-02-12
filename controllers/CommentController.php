@@ -63,5 +63,14 @@ class CommentController extends BaseController {
         $commentObj->text = $requestObj[$RQ_COMMENT_TEXT];
     	return $commentObj;
     }
+    private function updateCommentModel($requestObj, $commentCurrentDetails) {
+        global $RQ_USERID, $RQ_PRODUCTID, $RQ_COMMENT_RATING, $RQ_COMMENT_TEXT;
+        $commentObj = new CommentModel();
+        $commentObj->userId = $requestObj[$RQ_USERID] ?? $commentCurrentDetails->responseData[$RQ_USERID]; 
+        $commentObj->productId = $requestObj[$RQ_PRODUCTID] ?? $commentCurrentDetails->responseData[$RQ_PRODUCTID];
+        $commentObj->rating  = $requestObj[$RQ_COMMENT_RATING] ?? $commentCurrentDetails->responseData[$RQ_COMMENT_RATING];
+        $commentObj->text = $requestObj[$RQ_COMMENT_TEXT] ?? $commentCurrentDetails->responseData[$RQ_COMMENT_TEXT];
+    	return $commentObj;
+    }
 }
 ?>
