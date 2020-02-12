@@ -124,50 +124,50 @@ class BLManager extends BaseManager {
     }
 
     function showProducts($dbConnection, $userId) {
-        global $TRUE, $FALSE, $NULL, $USER_RETRIEVED_SUCCESSFULLY, $USER_RETRIEVING_ERROR;
+        global $TRUE, $FALSE, $NULL, $CART_RETRIEVED_SUCCESSFULLY, $CART_RETRIEVING_ERROR;
         $dbManagerObj = new DBManager($dbConnection);
         $dbResult = $dbManagerObj->showProducts($userId);
         $responseParserObject = new ResponseParser();
         if ($dbResult != null)
-            $responseObject = $responseParserObject->createSuccessModel($TRUE, $USER_RETRIEVED_SUCCESSFULLY, $dbResult);
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $CART_RETRIEVED_SUCCESSFULLY, $dbResult);
         else 
-            $responseObject = $responseParserObject->createErrorModel($FALSE, $USER_RETRIEVING_ERROR, $NULL);
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $CART_RETRIEVING_ERROR, $NULL);
         return $responseObject;
     }
 
     function addProduct($cartObj, $dbConnection) {
-        global $TRUE, $FALSE, $NULL, $PRODUCT_CREATED_SUCCESSFULLY, $PRODUCT_CREATION_ERROR;    
+        global $TRUE, $FALSE, $NULL, $PRODUCT_ADDED_SUCCESSFULLY, $PRODUCT_ADDING_ERROR;    
         $dbManagerObj = new DBManager($dbConnection);
         $dbResult = $dbManagerObj->addProduct($cartObj);
         $responseParserObject = new ResponseParser();
         if ($dbResult != null)
-            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_CREATED_SUCCESSFULLY, $dbResult);
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_ADDED_SUCCESSFULLY, $dbResult);
         else 
-            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_CREATION_ERROR, $NULL);
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_ADDING_ERROR, $NULL);
         return $responseObject;
     }
 
     function updateProducts($cartObj, $dbConnection) {
-        global $TRUE, $FALSE, $NULL, $PRODUCT_UPDATED_SUCCESSFULLY, $PRODUCT_UPDATION_ERROR;    
+        global $TRUE, $FALSE, $NULL, $CART_UPDATED_SUCCESSFULLY, $CART_UPDATION_ERROR;    
         $dbManagerObj = new DBManager($dbConnection);
         $dbResult = $dbManagerObj->updateProducts($cartObj);
         $responseParserObject = new ResponseParser();
         if ($dbResult != null)
-            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_UPDATED_SUCCESSFULLY, $dbResult);
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $CART_UPDATED_SUCCESSFULLY, $dbResult);
         else 
-            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_UPDATION_ERROR, $NULL);
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $CART_UPDATION_ERROR, $NULL);
         return $responseObject;
     }
 
     function deleteProducts($cartObj, $dbConnection) {
-        global $TRUE, $FALSE, $NULL, $PRODUCT_DELETED_SUCCESSFULLY, $PRODUCT_DELETION_ERROR;
+        global $TRUE, $FALSE, $NULL, $PRODUCT_REMOVED_SUCCESSFULLY, $PRODUCT_REMOVING_ERROR;
         $dbManagerObj = new DBManager($dbConnection);
         $dbResult = $dbManagerObj->deleteProducts($cartObj);
         $responseParserObject = new ResponseParser();
         if ($dbResult)
-            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_DELETED_SUCCESSFULLY, $dbResult);
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_REMOVED_SUCCESSFULLY, $dbResult);
         else 
-            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_DELETION_ERROR, $NULL);
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCT_REMOVING_ERROR, $NULL);
         return $responseObject;
     }
 

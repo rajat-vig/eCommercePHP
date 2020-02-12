@@ -54,5 +54,14 @@ $PRODUCT_DELETION_ERROR = 'Product can\'t be deleted';
 #Cart Constants
 $RQ_QUANTITY = 'quantity';
 
-?>
+#CART MODEL CONSTANTS
+$CART_RETRIEVED_SUCCESSFULLY = 'Cart products retrieved successfully';
+$CART_RETRIEVING_ERROR = 'Something went wrong while retrieving products from cart';
+$PRODUCT_ADDED_SUCCESSFULLY = 'Product added to cart';
+$PRODUCT_ADDING_ERROR = 'Error in adding product to cart';
+$CART_UPDATED_SUCCESSFULLY = 'Product details updated successfully';
+$CART_UPDATION_ERROR = 'Error in updating product';
+$PRODUCT_REMOVED_SUCCESSFULLY = 'Product deleted from cart';
+$PRODUCT_REMOVING_ERROR = 'Product can\'t be deleted';
 
+?>
