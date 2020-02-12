@@ -214,5 +214,18 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function getProductComments($productId) {
+        try {
+            $cmd = 'SELECT * FROM comment WHERE product_id = :productId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':productId', $productId);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>

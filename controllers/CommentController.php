@@ -23,7 +23,8 @@ class CommentController extends BaseController {
                 $utilityObj = new Utility();
                 $utilityObj->sendResponse($commentsResponse);
                 break;
-            } 
+            }
+        } 
     }
 }
 ?>
