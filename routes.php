@@ -17,5 +17,9 @@ switch ($endPoint) {
     $controller = new CartController($dbConnection, $requestMethod, $userId, $requestObject);
     $controller->processRequest();
     break;
+    case 'comment':
+    $controller = new CartController($dbConnection, $requestMethod, $userId, $requestObject, $secondId);
+    $controller->processRequest();
+    break;
 }
 ?>
