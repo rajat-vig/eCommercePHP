@@ -58,3 +58,15 @@ CREATE TABLE `eCommercePHP`.`image` (
     FOREIGN KEY (`comment_id`) REFERENCES comment(`comment_id`)
     ) 
 ENGINE = InnoDB;
+
+CREATE TABLE `eCommercePHP`.`order` ( 
+    `order_id` VARCHAR(255) NOT NULL ,
+    `user_id` INT NOT NULL ,
+    `product_id` INT NOT NULL , 
+    `quantity` FLOAT NOT NULL , 
+    `price` VARCHAR(255) NOT NULL ,
+    `date` DATETIME NOT NULL, 
+    FOREIGN KEY (`user_id`) REFERENCES user(`user_id`),
+    FOREIGN KEY (`product_id`) REFERENCES product(`product_id`)
+    ) 
+ENGINE = InnoDB;
