@@ -32,9 +32,9 @@ class OrderController extends BaseController {
             case 'POST':
             $orderObj = $this->getOrderModel($this->requestObj);
             $blManagerObj = new BLManager();
-            $productResponse = $blManagerObj->addOrder($orderObj, $this->dbConnection);
+            $orderResponse = $blManagerObj->addOrder($orderObj, $this->dbConnection);
             $utilityObj = new Utility();
-            $utilityObj->sendResponse($productResponse);
+            $utilityObj->sendResponse($orderResponse);
             break;
         } 
     }
