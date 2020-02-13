@@ -50,3 +50,11 @@ CREATE TABLE `eCommercePHP`.`comment` (
     FOREIGN KEY (`product_id`) REFERENCES product(`product_id`)
     ) 
 ENGINE = InnoDB;
+
+
+CREATE TABLE `eCommercePHP`.`image` ( 
+    `comment_id` INT NOT NULL ,
+    `image_url` VARCHAR(255) NOT NULL , 
+    FOREIGN KEY (`comment_id`) REFERENCES comment(`comment_id`)
+    ) 
+ENGINE = InnoDB;
