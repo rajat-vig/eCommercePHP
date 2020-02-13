@@ -29,6 +29,13 @@ class OrderController extends BaseController {
                 $utilityObj->sendResponse($orderResponse);
                 break;
             }
+            case 'POST':
+            $orderObj = $this->getOrderModel($this->requestObj);
+            $blManagerObj = new BLManager();
+            $productResponse = $blManagerObj->addOrder($orderObj, $this->dbConnection);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($productResponse);
+            break;
         } 
     }
 }
