@@ -265,6 +265,7 @@ class DBManager {
             $sql->bindValue(':rating', $commentObj->rating);
             $sql->bindValue(':text', $commentObj->text);
             $sql->execute();
+            echo $sql->rowCount();
             if ($sql->rowCount() > 0) 
                 return $this->getProductComments($commentObj->productId);
         } catch(Exception $e){
@@ -283,6 +284,19 @@ class DBManager {
             $sql->execute();
             if ($sql->rowCount() > 0)
                 return $this->getUserProductComment($commentObj->productId, $commentObj->userId);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+
+    function deleteComment($productId, $userId) {
+        try {
+            $cmd = 'DELETE FROM comment WHERE product_id = :productId && user_id = :userId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':productId', $productId);
+            $sql->bindValue(':userId', $userId);
+            $sql->execute();
+            return $sql->rowCount() > 0 ? true : false;
         } catch(Exception $e){
             echo $e->getMessage();
         }

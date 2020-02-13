@@ -44,6 +44,7 @@ class CommentController extends BaseController {
             $commentResponse = $blManagerObj->addComment($commentObj, $this->dbConnection);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($commentResponse);
+            break;
             case 'PUT':
             global $RQ_USERID, $RQ_PRODUCTID;
             $blManagerObj = new BLManager();
@@ -52,7 +53,9 @@ class CommentController extends BaseController {
             $commentResponse = $blManagerObj->updateComment($commentObj, $this->dbConnection);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($commentResponse);
+            break;
             case 'DELETE':
+            global $RQ_USERID, $RQ_PRODUCTID;
             $blManagerObj = new BLManager();
             $commentResponse = $blManagerObj->deleteComment($this->dbConnection, $this->requestObj[$RQ_PRODUCTID], $this->requestObj[$RQ_USERID]);
             $utilityObj = new Utility();
