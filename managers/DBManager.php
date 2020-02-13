@@ -329,5 +329,17 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function deleteImages($commentId) {
+        try {
+            $cmd = 'DELETE FROM image WHERE comment_id = :commentId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':commentId', $commentId);
+            $sql->execute();
+            return $sql->rowCount() > 0 ? true : false;
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
