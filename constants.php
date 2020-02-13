@@ -68,4 +68,8 @@ $PRODUCT_REMOVING_ERROR = 'Product can\'t be deleted';
 $RQ_COMMENTID = 'comment_id';
 $RQ_COMMENT_RATING = 'rating';
 $RQ_COMMENT_TEXT = 'text';
+
+#PRODUCT CONSTANTS
+$RQ_ORDERID = 'order_id';
+$RQ_ORDER_DATE = 'date';
 ?>
