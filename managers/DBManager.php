@@ -405,5 +405,17 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function deleteOrder($orderId) {
+        try {
+            $cmd = 'DELETE FROM `order` WHERE order_id = :orderId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':orderId', $orderId);
+            $sql->execute();
+            return $sql->rowCount() > 0 ? true : false;
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
