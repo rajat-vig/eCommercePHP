@@ -341,5 +341,18 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function getOrder($orderId) {
+        try {
+            $cmd = 'SELECT * FROM order WHERE order_id = :orderId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':orderId', $orderId);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>

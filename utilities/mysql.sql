@@ -70,3 +70,5 @@ CREATE TABLE `eCommercePHP`.`order` (
     FOREIGN KEY (`product_id`) REFERENCES product(`product_id`)
     ) 
 ENGINE = InnoDB;
+
+ALTER TABLE `order` CHANGE `order_id` `order_id` INT(255) NOT NULL;
