@@ -52,6 +52,12 @@ class CommentController extends BaseController {
             $commentResponse = $blManagerObj->updateComment($commentObj, $this->dbConnection);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($commentResponse);
+            case 'DELETE':
+            $blManagerObj = new BLManager();
+            $commentResponse = $blManagerObj->deleteComment($this->dbConnection, $this->requestObj[$RQ_PRODUCTID], $this->requestObj[$RQ_USERID]);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($commentResponse);
+            break;
         } 
     }
     private function getCommentModel($requestObj) {
