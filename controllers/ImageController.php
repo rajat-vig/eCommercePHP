@@ -8,11 +8,20 @@ class ImageController extends BaseController {
     public function __construct($dbConnection, $requestMethod, $commentId, $requestObj) {
         $this->dbConnection = $dbConnection;
         $this->requestMethod = $requestMethod;
-        $this->productId = $commentId;
+        $this->commentId = $commentId;
         $this->requestObj = $requestObj;
     }
 
     public function processRequest() {
+        switch ($this->requestMethod) {
+            case 'GET':
+            if ($this->commentId) {
+                $blManagerObj = new BLManager();
+                $imageResponse = $blManagerObj->getImages($this->dbConnection, $this->commentId);
+                $utilityObj = new Utility();
+                $utilityObj->sendResponse($imageResponse);
+                break;
+            } 
     }
 }
 ?>
