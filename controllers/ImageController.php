@@ -22,6 +22,7 @@ class ImageController extends BaseController {
                 $utilityObj->sendResponse($imageResponse);
                 break;
             }
+            break;
             case 'POST':
             $imageObj = $this->getImageModel($this->requestObj);
             $blManagerObj = new BLManager();

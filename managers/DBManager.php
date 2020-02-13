@@ -314,5 +314,20 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function addImage($imageObj) {
+        try {
+            $cmd = 'INSERT INTO ' . 'image' . ' (comment_id, image_url) ' .
+            'VALUES (:commentId, :imageUrl)';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':commentId', $imageObj->commentId);
+            $sql->bindValue(':imageUrl', $imageObj->imageUrl);
+            $sql->execute();
+            if ($sql->rowCount() > 0) 
+                return $this->getImages($imageObj->commentId);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
