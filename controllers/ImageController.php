@@ -29,6 +29,13 @@ class ImageController extends BaseController {
             $imageResponse = $blManagerObj->addImage($imageObj, $this->dbConnection);
             $utilityObj = new Utility();
             $utilityObj->sendResponse($imageResponse);
+            break;
+            case 'DELETE':
+            $blManagerObj = new BLManager();
+            $imageResponse = $blManagerObj->deleteImages($this->dbConnection, $this->commentId);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($imageResponse);
+            break;
         } 
     }
     private function getImageModel($requestObj) {
