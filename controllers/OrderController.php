@@ -55,5 +55,14 @@ class OrderController extends BaseController {
         $orderObj->quantity = $requestObj[$RQ_QUANTITY];
     	return $orderObj;
     }
+    private function updateOrderModel($requestObj, $orderCurrentDetails) {
+        global $RQ_PRICE, $RQ_PRODUCTID, $RQ_USERID, $RQ_QUANTITY;
+        $orderObj = new OrderModel();
+        $orderObj->userId = $requestObj[$RQ_USERID] ?? $orderCurrentDetails->responseData[$RQ_USERID]; 
+        $orderObj->productId = $requestObj[$RQ_PRODUCTID] ?? $orderCurrentDetails->responseData[$RQ_PRODUCTID];
+        $orderObj->price  = $requestObj[$RQ_PRICE] ?? $orderCurrentDetails->responseData[$RQ_PRICE];
+        $orderObj->quantity  = $requestObj[$RQ_QUANTITY] ?? $orderCurrentDetails->responseData[$RQ_QUANTITY];
+    	return $orderObj;
+    }
 }
 ?>
