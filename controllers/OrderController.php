@@ -21,7 +21,15 @@ class OrderController extends BaseController {
                 $utilityObj = new Utility();
                 $utilityObj->sendResponse($orderResponse);
                 break;
-            } 
+            }
+            else {
+                $blManagerObj = new BLManager();
+                $orderResponse = $blManagerObj->getUserOrder($this->dbConnection);
+                $utilityObj = new Utility();
+                $utilityObj->sendResponse($orderResponse);
+                break;
+            }
+        } 
     }
 }
 ?>

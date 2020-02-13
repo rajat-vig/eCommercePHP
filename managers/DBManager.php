@@ -344,7 +344,7 @@ class DBManager {
 
     function getOrder($orderId) {
         try {
-            $cmd = 'SELECT * FROM order WHERE order_id = :orderId';
+            $cmd = 'SELECT * FROM `order` WHERE order_id = :orderId';
             $sql = $this->dbConnection->prepare($cmd);
             $sql->bindValue(':orderId', $orderId);
             $sql->execute();

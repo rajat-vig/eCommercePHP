@@ -4,6 +4,7 @@ require __DIR__.'/controllers/ProductController.php';
 require __DIR__.'/controllers/CartController.php';
 require __DIR__.'/controllers/CommentController.php';
 require __DIR__.'/controllers/ImageController.php';
+require __DIR__.'/controllers/OrderController.php';
 
 switch ($endPoint) {
     case 'user':
