@@ -367,5 +367,26 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function addOrder($orderObj) {
+        try {
+            $id = abs(crc32(uniqid()));
+            $date = date_create()->format('Y-m-d H:i:s');
+            $cmd = 'INSERT INTO `order` (order_id, user_id, product_id, quantity, price, date) ' .
+            'VALUES (:orderId, :userId, :productId, :quantity, :price, :date)';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':orderId', $id);
+            $sql->bindValue(':userId', $orderObj->userId);
+            $sql->bindValue(':productId', $orderObj->productId);
+            $sql->bindValue(':quantity', $orderObj->quantity);
+            $sql->bindValue(':price', $orderObj->price);
+            $sql->bindValue(':date', $date);
+            $sql->execute();
+            if ($sql->rowCount() > 0) 
+                return $this->getOrder($id);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
