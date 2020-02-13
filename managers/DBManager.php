@@ -388,5 +388,22 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function updateOrder($orderObj, $orderId) {
+        try {
+            $cmd = 'UPDATE `order` SET product_id = :productId, quantity = :quantity, price = :price' .
+            ' WHERE order_id = :orderId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':orderId', $orderId);
+            $sql->bindValue(':productId', $orderObj->productId);
+            $sql->bindValue(':quantity', $orderObj->quantity);
+            $sql->bindValue(':price', $orderObj->price);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $this->getOrder($orderId);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>

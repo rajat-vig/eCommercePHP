@@ -315,10 +315,10 @@ class BLManager extends BaseManager {
         return $responseObject;
     }
 
-    function updateOrder($productObj, $dbConnection, $orderId) {
+    function updateOrder($orderObj, $dbConnection, $orderId) {
         global $TRUE, $FALSE, $NULL, $PRODUCT_UPDATED_SUCCESSFULLY, $PRODUCT_UPDATION_ERROR;    
         $dbManagerObj = new DBManager($dbConnection);
-        $dbResult = $dbManagerObj->updateOrder($productObj, $orderId);
+        $dbResult = $dbManagerObj->updateOrder($orderObj, $orderId);
         $responseParserObject = new ResponseParser();
         if ($dbResult != null)
             $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCT_UPDATED_SUCCESSFULLY, $dbResult);
