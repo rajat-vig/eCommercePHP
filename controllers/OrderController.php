@@ -17,7 +17,7 @@ class OrderController extends BaseController {
             case 'GET':
             if ($this->orderId) {
                 $blManagerObj = new BLManager();
-                $orderResponse = $blManagerObj->getOrder($this->dbConnection, $this->productId);
+                $orderResponse = $blManagerObj->getOrder($this->dbConnection, $this->orderId);
                 $utilityObj = new Utility();
                 $utilityObj->sendResponse($orderResponse);
                 break;
