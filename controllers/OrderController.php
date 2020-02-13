@@ -24,7 +24,7 @@ class OrderController extends BaseController {
             }
             else {
                 $blManagerObj = new BLManager();
-                $orderResponse = $blManagerObj->getUserOrder($this->dbConnection);
+                $orderResponse = $blManagerObj->getUserOrders($this->dbConnection);
                 $utilityObj = new Utility();
                 $utilityObj->sendResponse($orderResponse);
                 break;

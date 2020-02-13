@@ -291,5 +291,17 @@ class BLManager extends BaseManager {
         return $responseObject;
     }
 
+    function getUserOrders($dbConnection) {
+        global $TRUE, $FALSE, $NULL, $PRODUCTS_RETRIEVED_SUCCESSFULLY, $PRODUCTS_RETRIEVING_ERROR;
+        $dbManagerObj = new DBManager($dbConnection);
+        $dbResult = $dbManagerObj->getUserOrders();
+        $responseParserObject = new ResponseParser();
+        if ($dbResult != null)
+            $responseObject = $responseParserObject->createSuccessModel($TRUE, $PRODUCTS_RETRIEVED_SUCCESSFULLY, $dbResult);
+        else 
+            $responseObject = $responseParserObject->createErrorModel($FALSE, $PRODUCTS_RETRIEVING_ERROR, $NULL);
+        return $responseObject;
+    }
+
 }
 ?>
