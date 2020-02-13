@@ -13,6 +13,15 @@ class OrderController extends BaseController {
     }
 
     public function processRequest() {
+        switch ($this->requestMethod) {
+            case 'GET':
+            if ($this->orderId) {
+                $blManagerObj = new BLManager();
+                $orderResponse = $blManagerObj->getOrder($this->dbConnection, $this->productId);
+                $utilityObj = new Utility();
+                $utilityObj->sendResponse($orderResponse);
+                break;
+            } 
     }
 }
 ?>
