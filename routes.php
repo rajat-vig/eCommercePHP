@@ -26,5 +26,9 @@ switch ($endPoint) {
     $controller = new ImageController($dbConnection, $requestMethod, $userId, $requestObject);
     $controller->processRequest();
     break;
+    case 'order':
+    $controller = new OrderController($dbConnection, $requestMethod, $userId, $requestObject);
+    $controller->processRequest();
+    break;
 }
 ?>
