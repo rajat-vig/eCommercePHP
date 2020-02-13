@@ -21,7 +21,8 @@ class ImageController extends BaseController {
                 $utilityObj = new Utility();
                 $utilityObj->sendResponse($imageResponse);
                 break;
-            } 
+            }
+        } 
     }
 }
 ?>

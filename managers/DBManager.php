@@ -301,5 +301,18 @@ class DBManager {
             echo $e->getMessage();
         }
     }
+
+    function getImages($commentId) {
+        try {
+            $cmd = 'SELECT * FROM image WHERE comment_id = :commentId';
+            $sql = $this->dbConnection->prepare($cmd);
+            $sql->bindValue(':commentId', $commentId);
+            $sql->execute();
+            if ($sql->rowCount() > 0)
+                return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
