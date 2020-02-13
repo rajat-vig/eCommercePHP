@@ -44,6 +44,12 @@ class OrderController extends BaseController {
             $utilityObj = new Utility();
             $utilityObj->sendResponse($orderResponse);
             break;
+            case 'DELETE':
+            $blManagerObj = new BLManager();
+            $orderResponse = $blManagerObj->deleteOrder($this->dbConnection, $this->orderId);
+            $utilityObj = new Utility();
+            $utilityObj->sendResponse($orderResponse);
+            break;
         } 
     }
     private function getOrderModel($requestObj) {
