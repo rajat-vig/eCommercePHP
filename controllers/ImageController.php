@@ -30,5 +30,12 @@ class ImageController extends BaseController {
             $utilityObj->sendResponse($imageResponse);
         } 
     }
+    private function getImageModel($requestObj) {
+        global $RQ_COMMENTID, $RQ_IMAGE_URL;
+        $imageObj = new ImageModel();
+        $imageObj->commentId = $requestObj[$RQ_COMMENTID]; 
+        $imageObj->imageUrl = $requestObj[$RQ_IMAGE_URL];
+    	return $imageObj;
+    }
 }
 ?>
