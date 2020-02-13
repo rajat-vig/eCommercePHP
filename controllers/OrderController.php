@@ -38,5 +38,14 @@ class OrderController extends BaseController {
             break;
         } 
     }
+    private function getOrderModel($requestObj) {
+        global $RQ_PRICE, $RQ_PRODUCTID, $RQ_USERID, $RQ_QUANTITY;
+        $orderObj = new OrderModel();
+        $orderObj->userId = $requestObj[$RQ_USERID]; 
+        $orderObj->productId = $requestObj[$RQ_PRODUCTID];
+        $orderObj->price = $requestObj[$RQ_PRICE];
+        $orderObj->quantity = $requestObj[$RQ_QUANTITY];
+    	return $orderObj;
+    }
 }
 ?>
